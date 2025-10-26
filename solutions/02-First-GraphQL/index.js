@@ -48,7 +48,10 @@ const resolvers = {
     notes: () => notes,
     note: (parent, args) => {
       return notes.find(note => note.id === args.id);
-    }
+    }	db.pizza.updateOne(
+	  { type: "Veggie" },           // filter
+	  { $set: { type: "Mushroom" } } // update
+	)
   },
   Mutation: {
     newNote: (parent, args) => {
