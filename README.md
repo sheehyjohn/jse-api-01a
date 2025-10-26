@@ -1,3 +1,25 @@
+## Running the GraphQL API Example
+
+1. **Installed dependencies:**
+	- `express`
+	- `apollo-server-express`
+	- `graphql`
+
+	```sh
+	npm install express apollo-server-express graphql
+	```
+
+2. **Updated Apollo Server setup:**
+	- Wrapped the server initialization in an async function.
+	- Called `await server.start()` before applying middleware to Express, as required by Apollo Server v3+.
+
+3. **Started the server:**
+	- Used `nodemon index.js` to run the project.
+	- The server runs at [http://localhost:4000/api](http://localhost:4000/api).
+# Changes
+
+
+
 <img src="cover.png" width="200" align="right" />
 
 # JavaScript Everywhere API
