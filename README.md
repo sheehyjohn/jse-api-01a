@@ -1,3 +1,13 @@
+## Dependency Conflicts and npm Install
+
+When installing dependencies in this project, you may encounter errors due to incompatible versions of Express and Apollo Server. To resolve these, always use the following command:
+
+```sh
+npm install --legacy-peer-deps
+```
+
+This will bypass peer dependency conflicts and ensure all required packages are installed successfully.
+
 ## Running the GraphQL API Example
 
 1. **Installed key dependencies:**
@@ -44,6 +54,7 @@ Wrap the server initialization in an async function and call await server.start(
 4. Mongoose Database Connection
 Remove deprecated options and use the modern connection syntax:
 mongoose.connect(DB_HOST);
+
 
 # Changes
 
