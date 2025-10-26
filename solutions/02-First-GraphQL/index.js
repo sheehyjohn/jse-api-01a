@@ -32,8 +32,8 @@ const typeDefs = gql`
 
   type Query {
     hello: String
-    notes: [Note]
-    note(id: ID): Note
+    notes: [Note!]!
+    note(id: ID!): Note!
   }
 
   type Mutation {
