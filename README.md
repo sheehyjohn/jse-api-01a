@@ -1,21 +1,50 @@
 ## Running the GraphQL API Example
 
-1. **Installed dependencies:**
-	- `express`
-	- `apollo-server-express`
-	- `graphql`
+1. **Installed key dependencies:**
+- express
+	Fast, minimalist web framework for Node.js.
 
-	```sh
-	npm install express apollo-server-express graphql
-	```
+- apollo-server-express
+	Integrates Apollo Server (GraphQL) with Express.
+
+- graphql
+	Core GraphQL library for schema and query execution.
+
+- mongoose
+	ODM for MongoDB, enabling schema-based data modeling.
+
+- dotenv
+	Loads environment variables from a .env file.
+
+ 
 
 2. **Updated Apollo Server setup:**
+Important Code Changes for Modern Compatibility
+Apollo Server Setup:
+Wrap the server initialization in an async function and call await server.start() before applying middleware:const server = new ApolloServer({ typeDefs, resolvers });
+
+	async function startServer() {
+	await server.start();
+	server.applyMiddleware({ app });
+	app.listen(port, () => {
+		console.log(`Server running at http://localhost:${port}${server.graphqlPath}`);
+	});
+	}
+	startServer();
+
+
+
 	- Wrapped the server initialization in an async function.
 	- Called `await server.start()` before applying middleware to Express, as required by Apollo Server v3+.
 
 3. **Started the server:**
 	- Used `nodemon index.js` to run the project.
 	- The server runs at [http://localhost:4000/api](http://localhost:4000/api).
+
+4. Mongoose Database Connection
+Remove deprecated options and use the modern connection syntax:
+mongoose.connect(DB_HOST);
+
 # Changes
 
 
