@@ -1,5 +1,5 @@
 {
-  "name": "04-CRUD",
+  "name": "05-Authentication",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
