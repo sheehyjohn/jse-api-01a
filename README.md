@@ -1,3 +1,5 @@
+# Changes
+
 ## Dependency Conflicts and npm Install
 
 When installing dependencies in this project, you may encounter errors due to incompatible versions of Express and Apollo Server. To resolve these, always use the following command:
@@ -56,7 +58,24 @@ Remove deprecated options and use the modern connection syntax:
 mongoose.connect(DB_HOST);
 
 
-# Changes
+const mongoose = require('mongoose');
+
+module.exports = {
+  connect: DB_HOST => {
+    mongoose.connect(DB_HOST);
+    mongoose.connection.on('error', err => {
+      console.error(err);
+      console.log(
+        'MongoDB connection error. Please make sure MongoDB is running.'
+      );
+      process.exit();
+    });
+  },
+
+  close: () => {
+    mongoose.connection.close();
+  }
+};
 
 
 
