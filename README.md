@@ -53,7 +53,7 @@ Wrap the server initialization in an async function and call await server.start(
 	- Used `nodemon index.js` to run the project.
 	- The server runs at [http://localhost:4000/api](http://localhost:4000/api).
 
-4. Mongoose Database Connection
+# 4. Mongoose Database Connection
 Remove deprecated options and use the modern connection syntax:
 mongoose.connect(DB_HOST);
 
@@ -77,7 +77,7 @@ module.exports = {
   }
 };
 
-
+## 5. .env file
 
 <img src="cover.png" width="200" align="right" />
 

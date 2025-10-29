@@ -17,7 +17,7 @@ const app = express();
 db.connect(DB_HOST);
 
 // get the user info from a JWT
-const getUser = token => {
+const getUser = (token) => {
   if (token) {
     try {
       // return the user information from the token
@@ -42,17 +42,18 @@ const server = new ApolloServer({
     console.log(user);
     // add the db models and the user to the context
     return { models, user };
-  }
+  },
 });
 
 // Apply the Apollo GraphQL middleware and set the path to /api
-server.applyMiddleware({ app, path: '/api' });
 
-	async function startServer() {
-	await server.start();
-	server.applyMiddleware({ app });
-	app.listen(port, () => {
-		console.log(`Server running at http://localhost:${port}${server.graphqlPath}`);
-	});
-	}
-	startServer();
+async function startServer() {
+  await server.start();
+  server.applyMiddleware({ app, path: '/api' });
+  app.listen(port, () => {
+    console.log(
+      `Server running at http://localhost:${port}${server.graphqlPath}`,
+    );
+  });
+}
+startServer();
