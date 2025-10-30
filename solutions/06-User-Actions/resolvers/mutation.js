@@ -89,7 +89,7 @@ module.exports = {
         id,
         {
           $pull: {
-            favoritedBy: mongoose.Types.ObjectId(user.id),
+            favoritedBy: new mongoose.Types.ObjectId(user.id),
           },
           $inc: {
             favoriteCount: -1,
@@ -107,7 +107,7 @@ module.exports = {
         id,
         {
           $push: {
-            favoritedBy: mongoose.Types.ObjectId(user.id),
+            favoritedBy: new mongoose.Types.ObjectId(user.id),
           },
           $inc: {
             favoriteCount: 1,
