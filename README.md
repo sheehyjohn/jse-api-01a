@@ -57,7 +57,7 @@ Wrap the server initialization in an async function and call await server.start(
 Remove deprecated options and use the modern connection syntax:
 mongoose.connect(DB_HOST);
 
-
+``` js
 const mongoose = require('mongoose');
 
 module.exports = {
@@ -76,8 +76,12 @@ module.exports = {
     mongoose.connection.close();
   }
 };
+```
+# 5. dot env file
+Copy from previous project
 
-## 5. .env file
+
+
 
 <img src="cover.png" width="200" align="right" />
 
