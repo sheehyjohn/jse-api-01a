@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {
   AuthenticationError,
-  ForbiddenError
+  ForbiddenError,
 } = require('apollo-server-express');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -17,8 +17,9 @@ module.exports = {
 
     return await models.Note.create({
       content: args.content,
-      author: mongoose.Types.ObjectId(user.id),
-      favoriteCount: 0
+      //   author: mongoose.Types.ObjectId(user.id),
+      author: user.id,
+      favoriteCount: 0,
     });
   },
   deleteNote: async (parent, { id }, { models, user }) => {
@@ -59,16 +60,16 @@ module.exports = {
     // Update the note in the db and return the updated note
     return await models.Note.findOneAndUpdate(
       {
-        _id: id
+        _id: id,
       },
       {
         $set: {
-          content
-        }
+          content,
+        },
       },
       {
-        new: true
-      }
+        new: true,
+      },
     );
   },
   toggleFavorite: async (parent, { id }, { models, user }) => {
@@ -88,16 +89,16 @@ module.exports = {
         id,
         {
           $pull: {
-            favoritedBy: mongoose.Types.ObjectId(user.id)
+            favoritedBy: mongoose.Types.ObjectId(user.id),
           },
           $inc: {
-            favoriteCount: -1
-          }
+            favoriteCount: -1,
+          },
         },
         {
           // Set new to true to return the updated doc
-          new: true
-        }
+          new: true,
+        },
       );
     } else {
       // if the user doesn't exists in the list
@@ -106,15 +107,15 @@ module.exports = {
         id,
         {
           $push: {
-            favoritedBy: mongoose.Types.ObjectId(user.id)
+            favoritedBy: mongoose.Types.ObjectId(user.id),
           },
           $inc: {
-            favoriteCount: 1
-          }
+            favoriteCount: 1,
+          },
         },
         {
-          new: true
-        }
+          new: true,
+        },
       );
     }
   },
@@ -130,7 +131,7 @@ module.exports = {
         username,
         email,
         avatar,
-        password: hashed
+        password: hashed,
       });
 
       // create and return the json web token
@@ -148,7 +149,7 @@ module.exports = {
     }
 
     const user = await models.User.findOne({
-      $or: [{ email }, { username }]
+      $or: [{ email }, { username }],
     });
 
     // if no user is found, throw an authentication error
@@ -164,5 +165,5 @@ module.exports = {
 
     // create and return the json web token
     return jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-  }
+  },
 };
