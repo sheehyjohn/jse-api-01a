@@ -80,13 +80,15 @@ module.exports = {
 # 5. dot env file
 Copy from previous project
 
+# 6. JWT for sign-in
+<img src="image.png" align="right" />
 
 
-
-<img src="cover.png" width="200" align="right" />
+#
+#
 
 # JavaScript Everywhere API
-
+<img src="cover.png" width="200" align="right" />
 This repository contains code examples for the API chapters of [_JavaScript Everywhere_](https://www.jseverywhere.io/) by Adam D. Scott, published by O'Reilly Media
 
 ## Getting Help
